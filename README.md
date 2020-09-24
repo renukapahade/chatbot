@@ -81,3 +81,17 @@ Client:
 /chatbot/client            - Independent of the server code (not a monolithic app)
 
 ```
+
+## API endpoints
+
+```
+
+GET  /api/users/session                 - Create a chat session
+POST /api/users/account                 - Store the user message info
+GET  /api/users/stats/engagement       - Get the engagement rate (average time in seconds) by session
+GET  /api/users/stats/dropout          - Get the dropout rate (in percentage) by session
+GET  /api/users/stats/completion       - Get the completion rate (in percentage) by session
+
+```
+
+
