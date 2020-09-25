@@ -54,6 +54,17 @@ npm start
 # 5000 port for server/Express
 ```
 
+
+## Run tests
+
+```
+cd chatbot/server
+#Go to project directory 
+
+npm run test
+#Run the test command
+```
+
 ## Run client
 ```
 cd chatbot/server
