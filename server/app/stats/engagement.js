@@ -38,7 +38,7 @@ function getEngagementRate(req, res) {
         }
     ]).then(messages => {
         avgTimeInSecs = messages[0].avgTime / 1000;
-        res.send({ "average_time": avgTimeInSecs + " seconds" });
+        res.send({ "engagementRate": avgTimeInSecs + " seconds" });
     });
 
 }
