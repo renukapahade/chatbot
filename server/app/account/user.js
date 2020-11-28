@@ -1,20 +1,22 @@
-var Message = require('../../models/message');
-var getChatResponse = require('../../response');
+const Message = require('../../models/message');
+const getChatResponse = require('../../response');
 
-var userAccount = (req, res) => {
+const userAccount = (req, res) => {
     message = req.body.message ? req.body.message : "";
     message = message.toLowerCase().trim();
-    var chatResponse = getChatResponse(message);
 
     if (req.headers.session_id) {
-        //Save the user message in DB
+        const chatResponse = getChatResponse(message);
         var newMessage = new Message();
+
         newMessage.session_id = req.headers.session_id;
         newMessage.type = req.body.type;
         newMessage.message = req.body.message;
+
+        //Save the user message in DB
         newMessage.save(function (err) {
-            if (err)
-                throw err;
+        if (err)
+            throw err;
         });
 
         //Send the response back to the client

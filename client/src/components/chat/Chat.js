@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { userMessage, sendMessage, createSession } from '../../actions/chatAction'
 
 const Chat = ({ chat, userMessage, sendMessage, createSession }) => {
-    const [message, setMessage] = useState('');
+    let [message, setMessage] = useState('');
 
     //auto scroll when new message is entered
     const endOfChat = useRef(null);
@@ -20,11 +20,12 @@ const Chat = ({ chat, userMessage, sendMessage, createSession }) => {
 
         //when enter key is pressed
         if (code === 13) {
-            if (message.trim() !== '') {
+            message = message.trim();
+            if (message !== '') {
                 userMessage(message);
-                !localStorage.session ? await createSession(message) : await sendMessage(message)
+                !localStorage.session ? await createSession(message) : await sendMessage(message);
             }
-            setMessage('')
+            setMessage('');
         }
     }
 
