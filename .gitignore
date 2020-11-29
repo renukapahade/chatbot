@@ -12,3 +12,4 @@ server/npm-debug.log*
 client/npm-debug.log
 server/package-lock.json
 client/package-lock.json
+.env
