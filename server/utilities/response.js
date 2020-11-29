@@ -28,8 +28,10 @@ var chatResponse = (message) => {
                 break;
             case (message.match(/weather/) || {}).input:
             case (message.match(/climate/) || {}).input:
+            case (message.match(/humidity/) || {}).input:
+            case (message.match(/temperature/) || {}).input:
                 sessionEnd = false;
-                resolve({ responseMessage: getWeatherResponseMessage(await weather(message)), sessionEnd: false });
+                resolve({ responseMessage: getWeatherResponseMessage(await weather(message)), sessionEnd });
                 break;
             default:
                 responseMessage = "Sorry, I didn't catch that!";
