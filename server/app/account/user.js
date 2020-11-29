@@ -1,12 +1,12 @@
 const Message = require('../../models/message');
-const getChatResponse = require('../../response');
+const getChatResponse = require('../../utilities/response');
 
-const userAccount = (req, res) => {
+const userAccount = async (req, res) => {
     message = req.body.message ? req.body.message : "";
     message = message.toLowerCase().trim();
 
     if (req.headers.session_id) {
-        const chatResponse = getChatResponse(message);
+        const chatResponse = await getChatResponse(message);
         var newMessage = new Message();
 
         newMessage.session_id = req.headers.session_id;
