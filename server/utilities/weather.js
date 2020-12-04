@@ -9,21 +9,21 @@ const getWeather = (weatherQuery) => {
             .tag(words)
             .map(function (tag) { return tag[0] + '/' + tag[1]; })
             .join(' ');
-    
+        
         const probablePlaces = tags.split(' ')
-            .filter(word => (word.includes('NN') || word.includes('NNP')))
+            .filter(word => (word.includes('NN') || word.includes('NNP') || word.includes('JJ')))
             .map(ele => {
                 const place = ele.split('/')[0]
                 if (place.toLocaleLowerCase() !== 'weather')
                     return place;
             });
-    
+
         probablePlaces.forEach(city => {
             if (city) {
                 weatherReport.push(weatherAPI(city));
             }
         });
-    
+
         Promise.all(weatherReport).then(allCitiesData => {
             resolve(allCitiesData);
         });
@@ -41,12 +41,21 @@ const weatherAPI = (city) => {
             res.on('end', async () => {
                 const cityReport = JSON.parse(dataString);
                 const finalReport = {};
-                finalReport.name = cityReport.location.name;
-                finalReport.temperature = cityReport.current.temperature;
-                finalReport.description = cityReport.current.weather_descriptions[0];
-                finalReport.wind_speed = cityReport.current.wind_speed;
-                finalReport.humidity = cityReport.current.humidity;
-                resolve(finalReport);
+                if (cityReport.location) {
+                    finalReport.name = cityReport.location.name;
+                    finalReport.temperature = cityReport.current.temperature;
+                    finalReport.description = cityReport.current.weather_descriptions[0];
+                    finalReport.wind_speed = cityReport.current.wind_speed;
+                    finalReport.humidity = cityReport.current.humidity;
+                    resolve(finalReport);
+                } else {
+                    finalReport.name = city;
+                    finalReport.temperature = undefined;
+                    finalReport.description = undefined;
+                    finalReport.wind_speed = undefined;
+                    finalReport.humidity = undefined;
+                    resolve(finalReport);
+                }
             });
         }).on('error', (err) => {
             console.log('Something went wrong: ', err.message);
