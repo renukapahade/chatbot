@@ -14,7 +14,12 @@ const getWeather = (weatherQuery) => {
             .filter(word => (word.includes('NN') || word.includes('NNP') || word.includes('JJ')))
             .map(ele => {
                 const place = ele.split('/')[0]
-                if (place.toLocaleLowerCase() !== 'weather')
+                if (
+                    place.toLocaleLowerCase() !== 'weather' &&
+                    place.toLocaleLowerCase() !== 'climate' &&
+                    place.toLocaleLowerCase() !== 'humidity' &&
+                    place.toLocaleLowerCase() !== 'temperature'
+                )
                     return place;
             });
 

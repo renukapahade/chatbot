@@ -48,7 +48,7 @@ const getWeatherResponseMessage = (reports) => {
         if(element.temperature) {
             msg += `Temperature of ${element.name} is ${element.temperature}. It's ${element.description} there in ${element.name}.
             Humidity is ${element.humidity}.
-            Speed of wind is ${element.wind_speed}${(element.wind_speed > 20 ? ', Please be careful': '.')}\n`
+            Speed of wind is ${element.wind_speed}${(element.wind_speed > 20 ? ', Please be careful!': '.')}\n`
         } else {
             msg += `Weather report for ${element.name} cannot be fetched.\n`
         }
