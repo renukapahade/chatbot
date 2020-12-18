@@ -1,8 +1,14 @@
 const weather = require('./weather');
+const Filter = require('bad-words'),
+filter = new Filter();
 
 //Chatbot logic - to be replaced by AI models (Diaglogflow/Rasa etc)
 var chatResponse = (message) => {
+
     return new Promise(async (resolve, reject) => {
+        if (filter.isProfane(message)) {
+            resolve({ responseMessage: 'Your language is profane!', sessionEnd: false });
+        }
         switch (message) {
             case (message.match(/hello/) || {}).input:
             case (message.match(/hi/) || {}).input:
