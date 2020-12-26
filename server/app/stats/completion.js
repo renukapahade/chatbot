@@ -1,5 +1,5 @@
-const message = require('../../models/message');
-var Message = require('../../models/message');
+const message = require('../../db/models/message');
+var Message = require('../../db/models/message');
 
 function getCompletionRate(req, res) {
 

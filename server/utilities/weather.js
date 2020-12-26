@@ -19,12 +19,13 @@ const getWeather = (weatherQuery) => {
         const probablePlaces = tags.split(' ')
             .filter(word => (word.includes('NN') || word.includes('NNP') || word.includes('JJ')))
             .map(ele => {
-                const place = ele.split('/')[0]
+                const place = ele.split('/')[0];
+                const placeInLowerCase = place.toLocaleLowerCase();
                 if (
-                    place.toLocaleLowerCase() !== 'weather' &&
-                    place.toLocaleLowerCase() !== 'climate' &&
-                    place.toLocaleLowerCase() !== 'humidity' &&
-                    place.toLocaleLowerCase() !== 'temperature'
+                    placeInLowerCase !== 'weather' &&
+                    placeInLowerCase !== 'climate' &&
+                    placeInLowerCase !== 'humidity' &&
+                    placeInLowerCase !== 'temperature'
                 )
                     return place;
             });

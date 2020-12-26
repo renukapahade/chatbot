@@ -1,4 +1,4 @@
-const Message = require('../../models/message');
+const Message = require('../../db/models/message');
 const getChatResponse = require('../../utilities/response');
 
 const userAccount = async (req, res) => {

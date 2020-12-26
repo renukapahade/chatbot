@@ -1,4 +1,4 @@
-var Message = require('../../models/message');
+var Message = require('../../db/models/message');
 
 function getDropoutRate(req, res) {
 
